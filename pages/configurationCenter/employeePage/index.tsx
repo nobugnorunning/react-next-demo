@@ -99,7 +99,7 @@ const PostMaintenance = () => {
       <Modal
         open={open}
         title="员工信息编辑"
-        afterClose={() => setCurrentEdit({})}
+        afterClose={() => editForm.resetFields()}
         onOk={handleOk}
         onCancel={handleCancel}
         okText={'提交'}

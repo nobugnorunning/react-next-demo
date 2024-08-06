@@ -54,6 +54,34 @@ export const PAGE_ROUTER = [
           {
             name: "定量指标考核规则",
             path: "/configurationCenter/performanceRules/quantitativeIndexAssessment"
+          },
+          {
+            name: "费用组审单量考核规则",
+            path: "/configurationCenter/performanceRules/expenseReviewAmount"
+          },
+          {
+            name: "应付组审单量考核规则",
+            path: "/configurationCenter/performanceRules/payableReviewAmount"
+          },
+          {
+            name: "销售组审单量考核规则",
+            path: "/configurationCenter/performanceRules/saleReviewAmount"
+          },
+          {
+            name: "部门绩效系数配置",
+            path: "/configurationCenter/performanceRules/sectorPerformanceCoefficients"
+          },
+          {
+            name: "人员绩效系数配置",
+            path: "/configurationCenter/performanceRules/personnelPerformanceCoefficient"
+          },
+          {
+            name: "考核计算参数配置",
+            path: "/configurationCenter/performanceRules/calculationParameters"
+          },
+          {
+            name: "考核计算公式配置",
+            path: "/configurationCenter/performanceRules/calculationFormula"
           }
         ]
       }

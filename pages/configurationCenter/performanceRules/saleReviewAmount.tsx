@@ -1,7 +1,7 @@
-// 定量指标考核
+// 销售组审单量考核规则
 import { ProForm } from "@/components/ProForm";
 import { cloneDeep } from "lodash";
-import { QuantitativeIndexAssessmentData } from "./data";
+import { SaleReviewAmountData } from "./data";
 import { DeleteOutlined, DownloadOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { PageContainer } from "@ant-design/pro-layout";
 import {
@@ -27,6 +27,8 @@ type TableDataType = {
   field6: string;
   field7: string;
   field8: string;
+  field9: string;
+  field10: string;
 }
 
 type TableRowSelection<T> = TableProps<T>["rowSelection"];
@@ -72,10 +74,10 @@ const EditableCell: FC<PropsWithChildren<EditableCellProps>> = ({
   );
 };
 
-const QuantitativeIndexAssessment = () => {
+const SaleReviewAmount = () => {
   const [form] = Form.useForm()
   const [editForm] = Form.useForm()
-  const [list, setList] = useState(QuantitativeIndexAssessmentData);
+  const [list, setList] = useState(SaleReviewAmountData);
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([])
   const [open, setOpen] = useState<boolean>(false);
   const [currentEdit, setCurrentEdit] = useState<Partial<TableDataType>>({});
@@ -109,29 +111,39 @@ const QuantitativeIndexAssessment = () => {
 
   const editColumns = [
     {
-      title: "每单加分",
+      title: "第一名加分",
       dataIndex: "field4",
-      width: 200
+      width: 180
+    },
+    {
+      title: "第二名加分",
+      dataIndex: "field5",
+      width: 180
+    },
+    {
+      title: "第三名加分",
+      dataIndex: "field6",
+      width: 180
     },
     {
       title: "实际单量",
-      dataIndex: "field5",
-      width: 200
+      dataIndex: "field7",
+      width: 180
     },
     {
-      title: "考核单量",
-      dataIndex: "field6",
-      width: 200
+      title: "审单排名",
+      dataIndex: "field8",
+      width: 180
     },
     {
       title: "奖励加分",
-      dataIndex: "field7",
-      width: 200
+      dataIndex: "field9",
+      width: 180
     },
     {
       title: "实际得分",
-      dataIndex: "field8",
-      width: 200
+      dataIndex: "field10",
+      width: 180
     }
   ].map(col => {
     return {
@@ -208,6 +220,7 @@ const QuantitativeIndexAssessment = () => {
           <Button type={'link'} icon={<DownloadOutlined />}>导入</Button>
           <Button type={'primary'} icon={<PlusOutlined />} onClick={() => setOpen(true)}>新增</Button>
           <Button disabled={selectedRowKeys.length === 0} type={'primary'} icon={<EditOutlined />} onClick={edit}>编辑</Button>
+          <Button type={'primary'} icon={<EditOutlined />}>保存</Button>
           <Button disabled={selectedRowKeys.length === 0} danger icon={<DeleteOutlined />} onClick={
             () => {
               Modal.confirm({
@@ -228,7 +241,7 @@ const QuantitativeIndexAssessment = () => {
         components={{
           body: {
             cell: EditableCell
-            }
+          }
         }}
         dataSource={list}
         columns={columns.concat(editColumns)}
@@ -245,7 +258,7 @@ const QuantitativeIndexAssessment = () => {
 
       <Modal
         open={open}
-        title="新增定量指标考核规则"
+        title="新增销售组审单量考核规则"
         afterClose={() => editForm.resetFields()}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -283,4 +296,4 @@ const QuantitativeIndexAssessment = () => {
   )
 }
 
-export default QuantitativeIndexAssessment;
+export default SaleReviewAmount;

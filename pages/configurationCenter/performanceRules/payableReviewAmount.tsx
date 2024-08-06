@@ -1,4 +1,4 @@
-// 定量指标考核
+// 应付组审单量考核规则
 import { ProForm } from "@/components/ProForm";
 import { cloneDeep } from "lodash";
 import { QuantitativeIndexAssessmentData } from "./data";
@@ -72,7 +72,7 @@ const EditableCell: FC<PropsWithChildren<EditableCellProps>> = ({
   );
 };
 
-const QuantitativeIndexAssessment = () => {
+const PayableReviewAmount = () => {
   const [form] = Form.useForm()
   const [editForm] = Form.useForm()
   const [list, setList] = useState(QuantitativeIndexAssessmentData);
@@ -109,7 +109,7 @@ const QuantitativeIndexAssessment = () => {
 
   const editColumns = [
     {
-      title: "每单加分",
+      title: "加分基数",
       dataIndex: "field4",
       width: 200
     },
@@ -208,6 +208,7 @@ const QuantitativeIndexAssessment = () => {
           <Button type={'link'} icon={<DownloadOutlined />}>导入</Button>
           <Button type={'primary'} icon={<PlusOutlined />} onClick={() => setOpen(true)}>新增</Button>
           <Button disabled={selectedRowKeys.length === 0} type={'primary'} icon={<EditOutlined />} onClick={edit}>编辑</Button>
+          <Button type={'primary'} icon={<EditOutlined />}>保存</Button>
           <Button disabled={selectedRowKeys.length === 0} danger icon={<DeleteOutlined />} onClick={
             () => {
               Modal.confirm({
@@ -228,7 +229,7 @@ const QuantitativeIndexAssessment = () => {
         components={{
           body: {
             cell: EditableCell
-            }
+          }
         }}
         dataSource={list}
         columns={columns.concat(editColumns)}
@@ -245,7 +246,7 @@ const QuantitativeIndexAssessment = () => {
 
       <Modal
         open={open}
-        title="新增定量指标考核规则"
+        title="新增应付组审单量考核规则"
         afterClose={() => editForm.resetFields()}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -283,4 +284,4 @@ const QuantitativeIndexAssessment = () => {
   )
 }
 
-export default QuantitativeIndexAssessment;
+export default PayableReviewAmount;

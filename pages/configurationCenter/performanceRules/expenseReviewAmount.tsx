@@ -1,4 +1,4 @@
-// 定量指标考核
+// 费用组审单量考核规则
 import { ProForm } from "@/components/ProForm";
 import { cloneDeep } from "lodash";
 import { QuantitativeIndexAssessmentData } from "./data";
@@ -72,7 +72,7 @@ const EditableCell: FC<PropsWithChildren<EditableCellProps>> = ({
   );
 };
 
-const QuantitativeIndexAssessment = () => {
+const ExpenseReviewAmount = () => {
   const [form] = Form.useForm()
   const [editForm] = Form.useForm()
   const [list, setList] = useState(QuantitativeIndexAssessmentData);
@@ -228,7 +228,7 @@ const QuantitativeIndexAssessment = () => {
         components={{
           body: {
             cell: EditableCell
-            }
+          }
         }}
         dataSource={list}
         columns={columns.concat(editColumns)}
@@ -245,7 +245,7 @@ const QuantitativeIndexAssessment = () => {
 
       <Modal
         open={open}
-        title="新增定量指标考核规则"
+        title="新增费用组审单量考核规则"
         afterClose={() => editForm.resetFields()}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -283,4 +283,4 @@ const QuantitativeIndexAssessment = () => {
   )
 }
 
-export default QuantitativeIndexAssessment;
+export default ExpenseReviewAmount;

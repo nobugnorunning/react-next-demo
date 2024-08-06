@@ -136,7 +136,7 @@ const PostMaintenance = () => {
       <Modal
         open={open}
         title={`${JSON.stringify(currentEdit) === "{}" ? "新增" : "编辑"}岗位信息`}
-        afterClose={() => setCurrentEdit({})}
+        afterClose={() => editForm.resetFields()}
         onOk={handleOk}
         onCancel={handleCancel}
         okText={'提交'}

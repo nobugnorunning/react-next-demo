@@ -1,7 +1,7 @@
-// 定量指标考核
+// 人员绩效系数配置
 import { ProForm } from "@/components/ProForm";
 import { cloneDeep } from "lodash";
-import { QuantitativeIndexAssessmentData } from "./data";
+import { PersonnelPerformanceCoefficientData } from "./data";
 import { DeleteOutlined, DownloadOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { PageContainer } from "@ant-design/pro-layout";
 import {
@@ -22,11 +22,6 @@ type TableDataType = {
   field1: string;
   field2: string;
   field3: string;
-  field4: string;
-  field5: string;
-  field6: string;
-  field7: string;
-  field8: string;
 }
 
 type TableRowSelection<T> = TableProps<T>["rowSelection"];
@@ -72,10 +67,10 @@ const EditableCell: FC<PropsWithChildren<EditableCellProps>> = ({
   );
 };
 
-const QuantitativeIndexAssessment = () => {
+const PersonnelPerformanceCoefficient = () => {
   const [form] = Form.useForm()
   const [editForm] = Form.useForm()
-  const [list, setList] = useState(QuantitativeIndexAssessmentData);
+  const [list, setList] = useState(PersonnelPerformanceCoefficientData);
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([])
   const [open, setOpen] = useState<boolean>(false);
   const [currentEdit, setCurrentEdit] = useState<Partial<TableDataType>>({});
@@ -94,44 +89,21 @@ const QuantitativeIndexAssessment = () => {
       }
     },
     {
-      title: "姓名",
+      title: "人员名称",
       dataIndex: "field1"
-    },
-    {
-      title: "岗位",
-      dataIndex: "field2"
-    },
-    {
-      title: "职级系数",
-      dataIndex: "field3"
     }
   ]
 
   const editColumns = [
     {
-      title: "每单加分",
-      dataIndex: "field4",
-      width: 200
+      title: "个人绩效奖系数",
+      dataIndex: "field2",
+      width: "33%"
     },
     {
-      title: "实际单量",
-      dataIndex: "field5",
-      width: 200
-    },
-    {
-      title: "考核单量",
-      dataIndex: "field6",
-      width: 200
-    },
-    {
-      title: "奖励加分",
-      dataIndex: "field7",
-      width: 200
-    },
-    {
-      title: "实际得分",
-      dataIndex: "field8",
-      width: 200
+      title: "绩效奖基数",
+      dataIndex: "field3",
+      width: "33%"
     }
   ].map(col => {
     return {
@@ -183,22 +155,10 @@ const QuantitativeIndexAssessment = () => {
         console.log('123123123123');
       }}>
         <Form.Item
-          label={'姓名'}
+          label={'人员名称'}
           name="field1"
         >
-          <Input placeholder="请输入员工姓名" />
-        </Form.Item>
-        <Form.Item
-          label={'岗位'}
-          name="field2"
-        >
-          <Input placeholder="请输入岗位" />
-        </Form.Item>
-        <Form.Item
-          label={'职级系数'}
-          name="field3"
-        >
-          <Input placeholder="请输入职级系数" />
+          <Input placeholder="请输入人员名称" />
         </Form.Item>
       </ProForm>
 
@@ -228,7 +188,7 @@ const QuantitativeIndexAssessment = () => {
         components={{
           body: {
             cell: EditableCell
-            }
+          }
         }}
         dataSource={list}
         columns={columns.concat(editColumns)}
@@ -245,7 +205,7 @@ const QuantitativeIndexAssessment = () => {
 
       <Modal
         open={open}
-        title="新增定量指标考核规则"
+        title="新增人员绩效系数配置"
         afterClose={() => editForm.resetFields()}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -258,24 +218,24 @@ const QuantitativeIndexAssessment = () => {
           </>
         )}
       >
-        <Form form={editForm} initialValues={currentEdit} labelCol={{span: 3}}>
+        <Form form={editForm} initialValues={currentEdit} labelCol={{span: 7}}>
           <Form.Item
-            label={'姓名'}
+            label={'人员名称'}
             name={'field1'}
           >
-            <Input placeholder={"请输入姓名"}></Input>
+            <Input placeholder={"请输入人员名称"}></Input>
           </Form.Item>
           <Form.Item
-            label={'岗位'}
+            label={'个人绩效奖系数'}
             name={'field2'}
           >
-            <Input placeholder={"请输入岗位"}></Input>
+            <Input placeholder={"请输入个人绩效奖系数"}></Input>
           </Form.Item>
           <Form.Item
-            label={'职级'}
+            label={'绩效奖基数'}
             name={'field3'}
           >
-            <Input placeholder={"请输入职级"}></Input>
+            <Input placeholder={"请输入绩效奖基数"}></Input>
           </Form.Item>
         </Form>
       </Modal>
@@ -283,4 +243,4 @@ const QuantitativeIndexAssessment = () => {
   )
 }
 
-export default QuantitativeIndexAssessment;
+export default PersonnelPerformanceCoefficient;
