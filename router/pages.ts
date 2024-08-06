@@ -96,5 +96,22 @@ export const PAGE_ROUTER = [
         ]
       }
     ]
+  },
+  {
+    name: "绩效结果确认及应用",
+    path: "/performanceResultConfirmAndApply",
+    routes: [
+      {
+        name: "绩效结果确认",
+        path: "/performanceResultConfirmAndApply/performanceResultConfirm",
+        routes: [
+          {
+            hideInMenu: true,
+            name: "部门绩效结果申诉表",
+            path: "/performanceResultConfirmAndApply/performanceResultConfirm/complaint"
+          }
+        ]
+      }
+    ]
   }
 ]
