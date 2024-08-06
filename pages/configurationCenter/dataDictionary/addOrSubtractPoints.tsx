@@ -1,11 +1,12 @@
-// 部门绩效系数配置
 import { ProForm } from "@/components/ProForm";
-import { cloneDeep } from "lodash";
-import { SectorPerformanceCoefficientsData } from "./data";
+import type { Dayjs } from "dayjs";
+import dayjs from "dayjs";
+import { assign, cloneDeep } from "lodash";
+import { data } from "./data";
 import { DeleteOutlined, DownloadOutlined, EditOutlined, PlusOutlined, SaveOutlined } from "@ant-design/icons";
 import { PageContainer } from "@ant-design/pro-layout";
 import {
-  Button,
+  Button, DatePicker,
   Form,
   Input,
   InputNumber,
@@ -24,7 +25,9 @@ type TableDataType = {
   field3: string;
   field4: string;
   field5: string;
-  field6: string;
+  field6: string | Dayjs;
+  field7: number;
+  field8: number;
 }
 
 type TableRowSelection<T> = TableProps<T>["rowSelection"];
@@ -70,10 +73,10 @@ const EditableCell: FC<PropsWithChildren<EditableCellProps>> = ({
   );
 };
 
-const SectorPerformanceCoefficients = () => {
+const AddOrSubtractPoints = () => {
   const [form] = Form.useForm()
   const [editForm] = Form.useForm()
-  const [list, setList] = useState(SectorPerformanceCoefficientsData);
+  const [list, setList] = useState(data);
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([])
   const [open, setOpen] = useState<boolean>(false);
   const [currentEdit, setCurrentEdit] = useState<Partial<TableDataType>>({});
@@ -92,39 +95,42 @@ const SectorPerformanceCoefficients = () => {
       }
     },
     {
-      title: "部门名称",
+      title: "项目编码",
       dataIndex: "field1"
     },
     {
-      title: "分管领导",
+      title: "项目名称",
       dataIndex: "field2"
     },
+    {
+      title: "项目描述",
+      dataIndex: "field3"
+    },
+    {
+      title: "创建人",
+      dataIndex: "field4"
+    },
+    {
+      title: "适用部门",
+      dataIndex: "field5"
+    },
+    {
+      title: "创建时间",
+      dataIndex: "field6"
+    },
+    {
+      title: "加（减）分数下限",
+      dataIndex: "field7"
+    },
+    {
+      title: "加（减）分数上限",
+      dataIndex: "field8"
+    }
   ]
 
-  const editColumns = [
-    {
-      title: "总价评价权重",
-      dataIndex: "field3",
-      width: 220
-    },
-    {
-      title: "多维互评权重",
-      dataIndex: "field4",
-      width: 220
-    },
-    {
-      title: "部门基础评分",
-      dataIndex: "field5",
-      width: 220
-    },
-    {
-      title: "战略绩效与薪酬挂钩比例",
-      dataIndex: "field6",
-      width: 220
-    }
-  ].map(col => {
+  // UI图没看到哪个是编辑的
+  const editColumns = [].map(() => {
     return {
-      ...col,
       onCell: (record: TableDataType) => {
         return {
           record,
@@ -145,9 +151,20 @@ const SectorPerformanceCoefficients = () => {
     onChange: onSelectChange
   }
 
+  const create = () => {
+    setCurrentEdit({});
+    setOpen(true);
+  }
+
   const edit = () => {
-    // 编辑选中的行
-    setEditingRowKeys(cloneDeep(selectedRowKeys))
+    setCurrentEdit(
+      assign(
+        {},
+        cloneDeep(list.find(item => (item.field1 === selectedRowKeys[0]))!),
+        { field6: dayjs(currentEdit.field6) }
+      )
+    )
+    setOpen(true);
   }
 
   const submit = () => {
@@ -178,10 +195,16 @@ const SectorPerformanceCoefficients = () => {
           <Input placeholder="请输入使用部门" />
         </Form.Item>
         <Form.Item
-          label={'分管领导'}
+          label={'创建时间'}
           name="field2"
         >
-          <Input placeholder="请输入分管领导" />
+          <DatePicker />
+        </Form.Item>
+        <Form.Item
+          label={'创建人'}
+          name="field3"
+        >
+          <Input placeholder="请输入创建人" />
         </Form.Item>
       </ProForm>
 
@@ -189,8 +212,8 @@ const SectorPerformanceCoefficients = () => {
         <Space>
           <Button type={'link'} icon={<DownloadOutlined />}>下载模板</Button>
           <Button type={'link'} icon={<DownloadOutlined />}>导入</Button>
-          <Button type={'primary'} icon={<PlusOutlined />} onClick={() => setOpen(true)}>新增</Button>
-          <Button disabled={selectedRowKeys.length === 0} type={'primary'} icon={<EditOutlined />} onClick={edit}>编辑</Button>
+          <Button type={'primary'} icon={<PlusOutlined />} onClick={create}>新增</Button>
+          <Button disabled={selectedRowKeys.length !== 1} type={'primary'} icon={<EditOutlined />} onClick={edit}>编辑</Button>
           <Button type={'primary'} icon={<SaveOutlined />}>保存</Button>
           <Button disabled={selectedRowKeys.length === 0} danger icon={<DeleteOutlined />} onClick={
             () => {
@@ -215,7 +238,7 @@ const SectorPerformanceCoefficients = () => {
           }
         }}
         dataSource={list}
-        columns={columns.concat(editColumns)}
+        columns={columns}
         rowKey={"field1"}
         rowSelection={rowSelection}
       ></Table>
@@ -229,7 +252,7 @@ const SectorPerformanceCoefficients = () => {
 
       <Modal
         open={open}
-        title="新增部门绩效系数配置"
+        title={`${JSON.stringify(currentEdit) === "{}" ? "新增" : "编辑"}考核计算公式配置`}
         afterClose={() => editForm.resetFields()}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -242,18 +265,54 @@ const SectorPerformanceCoefficients = () => {
           </>
         )}
       >
-        <Form form={editForm} initialValues={currentEdit} labelCol={{span: 3}}>
+        <Form form={editForm} initialValues={currentEdit} labelCol={{span: 6}}>
           <Form.Item
-            label={'部门名称'}
+            label={'项目编码'}
             name={'field1'}
           >
-            <Input placeholder={"请输入部门名称"}></Input>
+            <Input placeholder={"请输入项目编码"}></Input>
           </Form.Item>
           <Form.Item
-            label={'分管领导'}
+            label={'项目名称'}
             name={'field2'}
           >
-            <Input placeholder={"请输入分管领导"}></Input>
+            <Input placeholder={"请输入项目名称"}></Input>
+          </Form.Item>
+          <Form.Item
+            label={'项目描述'}
+            name={'field3'}
+          >
+            <Input placeholder={"请输入项目描述"}></Input>
+          </Form.Item>
+          <Form.Item
+            label={'创建人'}
+            name={'field4'}
+          >
+            <Input placeholder={"请输入创建人"}></Input>
+          </Form.Item>
+          <Form.Item
+            label={'适用部门'}
+            name={'field5'}
+          >
+            <Input placeholder={"请输入适用部门"}></Input>
+          </Form.Item>
+          <Form.Item
+            label={'创建时间'}
+            name={'field6'}
+          >
+            <DatePicker className={"w-full"} />
+          </Form.Item>
+          <Form.Item
+            label={'加(减)分数下限'}
+            name={'field6'}
+          >
+            <InputNumber className={'w-full'} min={0} placeholder={"请输入"}></InputNumber>
+          </Form.Item>
+          <Form.Item
+            label={'加(减)分数上限'}
+            name={'field6'}
+          >
+            <InputNumber className={'w-full'} min={0} placeholder={"请输入"}></InputNumber>
           </Form.Item>
         </Form>
       </Modal>
@@ -261,4 +320,4 @@ const SectorPerformanceCoefficients = () => {
   )
 }
 
-export default SectorPerformanceCoefficients;
+export default AddOrSubtractPoints;

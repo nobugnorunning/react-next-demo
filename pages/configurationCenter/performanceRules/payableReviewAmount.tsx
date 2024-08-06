@@ -2,7 +2,7 @@
 import { ProForm } from "@/components/ProForm";
 import { cloneDeep } from "lodash";
 import { QuantitativeIndexAssessmentData } from "./data";
-import { DeleteOutlined, DownloadOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { DeleteOutlined, DownloadOutlined, EditOutlined, PlusOutlined, SaveOutlined } from "@ant-design/icons";
 import { PageContainer } from "@ant-design/pro-layout";
 import {
   Button,
@@ -208,7 +208,7 @@ const PayableReviewAmount = () => {
           <Button type={'link'} icon={<DownloadOutlined />}>导入</Button>
           <Button type={'primary'} icon={<PlusOutlined />} onClick={() => setOpen(true)}>新增</Button>
           <Button disabled={selectedRowKeys.length === 0} type={'primary'} icon={<EditOutlined />} onClick={edit}>编辑</Button>
-          <Button type={'primary'} icon={<EditOutlined />}>保存</Button>
+          <Button type={'primary'} icon={<SaveOutlined />}>保存</Button>
           <Button disabled={selectedRowKeys.length === 0} danger icon={<DeleteOutlined />} onClick={
             () => {
               Modal.confirm({

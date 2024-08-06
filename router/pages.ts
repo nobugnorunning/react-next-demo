@@ -84,6 +84,16 @@ export const PAGE_ROUTER = [
             path: "/configurationCenter/performanceRules/calculationFormula"
           }
         ]
+      },
+      {
+        name: "数据字典",
+        path: "/configurationCenter/dataDictionary",
+        routes: [
+          {
+            name: "加减分字典",
+            path: "/configurationCenter/dataDictionary/addOrSubtractPoints"
+          }
+        ]
       }
     ]
   }
