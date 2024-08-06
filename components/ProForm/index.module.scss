@@ -1,0 +1,27 @@
+.form {
+  font-size: 14px;
+  :global {
+    .ant-form-item {
+      margin-right: 32px;
+
+      .ant-input,.ant-picker {
+        border: 0;
+        outline: none;
+        background: #f3f4f6;
+        border-radius: 0;
+        min-width: 210px;
+
+        &::placeholder {
+          color: rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      &.search-form-button {
+        .ant-btn {
+          border-radius: 0;
+          border: 0;
+        }
+      }
+    }
+  }
+}

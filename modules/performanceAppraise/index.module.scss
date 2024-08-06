@@ -1,0 +1,12 @@
+.formCard {
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  padding: 20px;
+
+  :global {
+    .ant-picker {
+      width: 100%;
+    }
+  }
+}
