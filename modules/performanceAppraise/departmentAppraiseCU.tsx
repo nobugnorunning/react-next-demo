@@ -111,10 +111,16 @@ export const DepartmentAppraiseCU = () => {
           </Row>
         </Form>
 
-        <Row justify={'end'} className={'mb-[20px]'}>
-          <Button type={'link'} icon={<DownloadOutlined />}>下载模板</Button>
-          <Button type={'link'} icon={<DownloadOutlined />}>导入</Button>
-        </Row>
+        {
+          id ?
+            null :
+            (
+              <Row justify={'end'} className={'mb-[20px]'}>
+                <Button type={'link'} icon={<DownloadOutlined />}>下载模板</Button>
+                <Button type={'link'} icon={<DownloadOutlined />}>导入</Button>
+              </Row>
+            )
+        }
 
         <Table></Table>
       </div>

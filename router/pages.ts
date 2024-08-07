@@ -118,6 +118,10 @@ export const PAGE_ROUTER = [
         ]
       },
       {
+        name: "专项嘉奖管理",
+        path: "/performanceResultConfirmAndApply/specialAwards",
+      },
+      {
         name: "员工绩效计算",
         path: "/performanceResultConfirmAndApply/employeePerformanceCalculations",
       }
