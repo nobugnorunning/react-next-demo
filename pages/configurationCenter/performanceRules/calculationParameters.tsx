@@ -1,6 +1,5 @@
 // 考核计算参数配置
 import { ProForm } from "@/components/ProForm";
-import { cloneDeep } from "lodash";
 import { PersonnelPerformanceCoefficientData } from "./data";
 import { DeleteOutlined, DownloadOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { PageContainer } from "@ant-design/pro-layout";
@@ -82,17 +81,21 @@ const CalculationParameters = () => {
 
   const columns = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text: string, _record: TableDataType, index: number) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "参数编码",
       dataIndex: "field1"
     },
     {
+      align: "center",
       title: "参数名称",
       dataIndex: "field2"
     }
@@ -100,6 +103,7 @@ const CalculationParameters = () => {
 
   const editColumns = [
     {
+      align: "center",
       title: "内容描述",
       dataIndex: "field3",
       width: "33%"

@@ -23,21 +23,26 @@ const DepartmentPage = () => {
 
   const columns: TableColumnsType<TableDataType> = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text, _record, index) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "部门名称",
       dataIndex: "field1"
     },
     {
+      align: "center",
       title: "部门人数",
       dataIndex: "field2"
     },
     {
+      align: "center",
       title: "部门负责人",
       dataIndex: "field3"
     }

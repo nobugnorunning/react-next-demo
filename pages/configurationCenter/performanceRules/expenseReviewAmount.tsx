@@ -87,21 +87,26 @@ const ExpenseReviewAmount = () => {
 
   const columns = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text: string, _record: TableDataType, index: number) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "姓名",
       dataIndex: "field1"
     },
     {
+      align: "center",
       title: "岗位",
       dataIndex: "field2"
     },
     {
+      align: "center",
       title: "职级系数",
       dataIndex: "field3"
     }
@@ -109,26 +114,31 @@ const ExpenseReviewAmount = () => {
 
   const editColumns = [
     {
+      align: "center",
       title: "每单加分",
       dataIndex: "field4",
       width: 200
     },
     {
+      align: "center",
       title: "实际单量",
       dataIndex: "field5",
       width: 200
     },
     {
+      align: "center",
       title: "考核单量",
       dataIndex: "field6",
       width: 200
     },
     {
+      align: "center",
       title: "奖励加分",
       dataIndex: "field7",
       width: 200
     },
     {
+      align: "center",
       title: "实际得分",
       dataIndex: "field8",
       width: 200

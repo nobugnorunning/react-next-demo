@@ -88,58 +88,68 @@ const AddOrSubtractPoints = () => {
 
   const columns = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text: string, _record: TableDataType, index: number) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "项目编码",
       dataIndex: "field1"
     },
     {
+      align: "center",
       title: "项目名称",
       dataIndex: "field2"
     },
     {
+      align: "center",
       title: "项目描述",
       dataIndex: "field3"
     },
     {
+      align: "center",
       title: "创建人",
       dataIndex: "field4"
     },
     {
+      align: "center",
       title: "适用部门",
       dataIndex: "field5"
     },
     {
+      align: "center",
       title: "创建时间",
       dataIndex: "field6"
     },
     {
+      align: "center",
       title: "加（减）分数下限",
       dataIndex: "field7"
     },
     {
+      align: "center",
       title: "加（减）分数上限",
       dataIndex: "field8"
     }
   ]
 
   // UI图没看到哪个是编辑的
-  const editColumns = [].map(() => {
-    return {
-      onCell: (record: TableDataType) => {
-        return {
-          record,
-          dataIndex: "field4",
-          editing: isEditing(record.field1)
-        }
-      }
-    }
-  })
+  // const editColumns = [].map(() => {
+  //   return {
+  //     onCell: (record: TableDataType) => {
+  //       return {
+  //         record,
+  //         dataIndex: "field4",
+  //         editing: isEditing(record.field1)
+  //       }
+  //     }
+  //   }
+  // })
 
   const onSelectChange = (keys: Key[]) => {
     console.log(keys);

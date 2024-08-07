@@ -4,6 +4,7 @@ import { cloneDeep } from "lodash";
 import { SectorPerformanceCoefficientsData } from "./data";
 import { DeleteOutlined, DownloadOutlined, EditOutlined, PlusOutlined, SaveOutlined } from "@ant-design/icons";
 import { PageContainer } from "@ant-design/pro-layout";
+import type { TableColumnsType} from "antd";
 import {
   Button,
   Form,
@@ -83,19 +84,23 @@ const SectorPerformanceCoefficients = () => {
     return editingRowKeys.includes(key);
   }
 
-  const columns = [
+  const columns: TableColumnsType = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text: string, _record: TableDataType, index: number) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "部门名称",
       dataIndex: "field1"
     },
     {
+      align: "center",
       title: "分管领导",
       dataIndex: "field2"
     },
@@ -103,21 +108,25 @@ const SectorPerformanceCoefficients = () => {
 
   const editColumns = [
     {
+      align: "center",
       title: "总价评价权重",
       dataIndex: "field3",
       width: 220
     },
     {
+      align: "center",
       title: "多维互评权重",
       dataIndex: "field4",
       width: 220
     },
     {
+      align: "center",
       title: "部门基础评分",
       dataIndex: "field5",
       width: 220
     },
     {
+      align: "center",
       title: "战略绩效与薪酬挂钩比例",
       dataIndex: "field6",
       width: 220
@@ -133,7 +142,7 @@ const SectorPerformanceCoefficients = () => {
         }
       }
     }
-  })
+  }) as TableColumnsType
 
   const onSelectChange = (keys: Key[]) => {
     console.log(keys);

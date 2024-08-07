@@ -9,7 +9,7 @@ import {
   Form,
   Input, message,
   Modal, Radio,
-  Row, Select,
+  Row,
   Table,
   type TableColumnsType
 } from "antd";
@@ -33,39 +33,47 @@ const PostMaintenance = () => {
 
   const columns: TableColumnsType<TableDataType> = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text, _record, index) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "岗位编号",
       dataIndex: "field1"
     },
     {
+      align: "center",
       title: "岗位名称",
       dataIndex: "field2"
     },
     {
+      align: "center",
       title: "自评分是否可见",
       dataIndex: "field3"
     },
     {
+      align: "center",
       title: "岗位来源",
       dataIndex: "field4"
     },
     {
+      align: "center",
       title: "创建人",
       dataIndex: "field5"
     },
     {
+      align: "center",
       title: "创建时间",
       dataIndex: "field6"
     },
     {
+      align: "center",
       title: "操作",
-      align: 'center',
       render: (_, record, index) => {
         return (
           <>

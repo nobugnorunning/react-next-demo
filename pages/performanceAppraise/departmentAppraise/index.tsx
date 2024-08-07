@@ -31,55 +31,67 @@ const Index = () => {
   const [list, setList] = useState(data);
   const columns: TableColumnsType<TableDataType> = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text, _record, index) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "单据编号",
       dataIndex: "field1"
     },
     {
+      align: "center",
       title: "考核名称",
       dataIndex: "field2"
     },
     {
+      align: "center",
       title: "考核类型",
       dataIndex: "field3"
     },
     {
+      align: "center",
       title: "所属部门",
       dataIndex: "field4"
     },
     {
+      align: "center",
       title: "期间",
       dataIndex: "field5"
     },
     {
+      align: "center",
       title: "创建人",
       dataIndex: "field6"
     },
     {
+      align: "center",
       title: "创建时间",
       dataIndex: "field7"
     },
     {
+      align: "center",
       title: "更新人",
       dataIndex: "field8"
     },
     {
+      align: "center",
       title: "更新时间",
       dataIndex: "field9"
     },
     {
+      align: "center",
       title: "状态",
       dataIndex: "field10"
     },
     {
+      align: "center",
       title: "操作",
-      align: 'center',
       render: (_, record, index) => {
         return (
           <>

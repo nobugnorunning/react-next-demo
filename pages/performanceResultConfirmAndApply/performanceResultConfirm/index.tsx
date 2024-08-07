@@ -9,6 +9,7 @@ import type { TableColumnsType , TableProps } from "antd";
 import { ProForm } from "@/components/ProForm";
 
 type TableDataType = {
+  id: string;
   field1: string;
   field2: string;
   field3: string;
@@ -27,47 +28,55 @@ const PerformanceResultConfirm = () => {
   const router = useRouter();
   const [form] = Form.useForm()
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([])
-  const [list, setList] = useState(data);
+  const [list] = useState(data);
 
-  const complaint = (row: TableDataType) => {
-    router.push(`/performanceResultConfirmAndApply/performanceResultConfirm/complaint?id=${row.field1}`)
+  const complaint = (row: TableDataType, detail = false) => {
+    router.push(`/performanceResultConfirmAndApply/performanceResultConfirm/${detail ? 'complaintDetail' : 'complaintEdit'}?id=${row.id}${detail ? `&type=detail` : ''}`)
   }
 
   const columns: TableColumnsType<TableDataType> = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text, _record, index) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "单据编号",
       dataIndex: "field1"
     },
     {
+      align: "center",
       title: "考核类型",
       dataIndex: "field2"
     },
     {
+      align: "center",
       title: "考核部门",
       dataIndex: "field3"
     },
     {
+      align: "center",
       title: "期间",
       dataIndex: "field4"
     },
     {
+      align: "center",
       title: "自评得分",
       dataIndex: "field5"
     },
     {
+      align: "center",
       title: "考评小组评分",
       dataIndex: "field6"
     },
     {
+      align: "center",
       title: "操作",
-      align: 'center',
       render: (_, record) => {
         return (
           <>
@@ -81,7 +90,7 @@ const PerformanceResultConfirm = () => {
                 }
               })
             }}>确认</Button>
-            <Button type={'link'}>详情</Button>
+            <Button type={'link'} onClick={() => complaint(record, true)}>详情</Button>
           </>
         )
       }

@@ -4,6 +4,7 @@ import { cloneDeep } from "lodash";
 import { PersonnelPerformanceCoefficientData } from "./data";
 import { DeleteOutlined, DownloadOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { PageContainer } from "@ant-design/pro-layout";
+import type { TableColumnsType} from "antd";
 import {
   Button,
   Form,
@@ -80,15 +81,18 @@ const PersonnelPerformanceCoefficient = () => {
     return editingRowKeys.includes(key);
   }
 
-  const columns = [
+  const columns: TableColumnsType = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text: string, _record: TableDataType, index: number) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "人员名称",
       dataIndex: "field1"
     }
@@ -96,11 +100,13 @@ const PersonnelPerformanceCoefficient = () => {
 
   const editColumns = [
     {
+      align: "center",
       title: "个人绩效奖系数",
       dataIndex: "field2",
       width: "33%"
     },
     {
+      align: "center",
       title: "绩效奖基数",
       dataIndex: "field3",
       width: "33%"
@@ -116,7 +122,7 @@ const PersonnelPerformanceCoefficient = () => {
         }
       }
     }
-  })
+  }) as TableColumnsType
 
   const onSelectChange = (keys: Key[]) => {
     console.log(keys);

@@ -26,31 +26,37 @@ const PostMaintenance = () => {
 
   const columns: TableColumnsType<TableDataType> = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text, _record, index) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "员工编号",
       dataIndex: "field1"
     },
     {
+      align: "center",
       title: "员工姓名",
       dataIndex: "field2"
     },
     {
+      align: "center",
       title: "所属岗位",
       dataIndex: "field3"
     },
     {
+      align: "center",
       title: "是否参与绩效考核",
       dataIndex: "field4"
     },
     {
+      align: "center",
       title: "操作",
-      align: 'center',
       render: (_,record) => {
         return (
           <>

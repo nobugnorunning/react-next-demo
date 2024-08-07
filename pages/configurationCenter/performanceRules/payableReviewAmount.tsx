@@ -4,6 +4,7 @@ import { cloneDeep } from "lodash";
 import { QuantitativeIndexAssessmentData } from "./data";
 import { DeleteOutlined, DownloadOutlined, EditOutlined, PlusOutlined, SaveOutlined } from "@ant-design/icons";
 import { PageContainer } from "@ant-design/pro-layout";
+import type { TableColumnsType} from "antd";
 import {
   Button,
   Form,
@@ -85,23 +86,28 @@ const PayableReviewAmount = () => {
     return editingRowKeys.includes(key);
   }
 
-  const columns = [
+  const columns: TableColumnsType = [
     {
+      align: "center",
       title: "序号",
+      width: 60,
       key: "index",
       render: (_text: string, _record: TableDataType, index: number) => {
         return index + 1
       }
     },
     {
+      align: "center",
       title: "姓名",
       dataIndex: "field1"
     },
     {
+      align: "center",
       title: "岗位",
       dataIndex: "field2"
     },
     {
+      align: "center",
       title: "职级系数",
       dataIndex: "field3"
     }
@@ -109,26 +115,31 @@ const PayableReviewAmount = () => {
 
   const editColumns = [
     {
+      align: "center",
       title: "加分基数",
       dataIndex: "field4",
       width: 200
     },
     {
+      align: "center",
       title: "实际单量",
       dataIndex: "field5",
       width: 200
     },
     {
+      align: "center",
       title: "考核单量",
       dataIndex: "field6",
       width: 200
     },
     {
+      align: "center",
       title: "奖励加分",
       dataIndex: "field7",
       width: 200
     },
     {
+      align: "center",
       title: "实际得分",
       dataIndex: "field8",
       width: 200
@@ -144,7 +155,7 @@ const PayableReviewAmount = () => {
         }
       }
     }
-  })
+  }) as TableColumnsType
 
   const onSelectChange = (keys: Key[]) => {
     console.log(keys);

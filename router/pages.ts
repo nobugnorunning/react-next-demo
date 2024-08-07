@@ -108,9 +108,18 @@ export const PAGE_ROUTER = [
           {
             hideInMenu: true,
             name: "部门绩效结果申诉表",
-            path: "/performanceResultConfirmAndApply/performanceResultConfirm/complaint"
+            path: "/performanceResultConfirmAndApply/performanceResultConfirm/complaintEdit"
+          },
+          {
+            hideInMenu: true,
+            name: "部门绩效结果申诉表详情",
+            path: "/performanceResultConfirmAndApply/performanceResultConfirm/complaintDetail"
           }
         ]
+      },
+      {
+        name: "员工绩效计算",
+        path: "/performanceResultConfirmAndApply/employeePerformanceCalculations",
       }
     ]
   }
