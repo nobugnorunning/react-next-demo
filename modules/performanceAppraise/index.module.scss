@@ -5,8 +5,17 @@
   padding: 20px;
 
   :global {
+    .title {
+      margin-top: 0 !important;
+    }
+
     .ant-picker {
       width: 100%;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
     }
   }
 }

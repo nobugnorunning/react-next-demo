@@ -95,7 +95,9 @@ const Index = () => {
       render: (_, record, index) => {
         return (
           <>
-            <Button type={'link'}>详情</Button>
+            <Button type={'link'} onClick={() => {
+              router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseEdit?id=${record.field1}&type=detail`)
+            }}>详情</Button>
             <Button type={'link'} onClick={() => {
               router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseEdit?id=${record.field1}`)
             }}>编辑</Button>

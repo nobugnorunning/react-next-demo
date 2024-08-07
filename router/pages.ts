@@ -26,6 +26,11 @@ export const PAGE_ROUTER = [
             hideInMenu: true,
             name: "部门绩效评价编辑",
             path: "/performanceAppraise/departmentAppraise/departmentAppraiseEdit",
+          },
+          {
+            hideInMenu: true,
+            name: "部门绩效评价编辑",
+            path: "/performanceAppraise/departmentAppraise/departmentAppraiseDetail",
           }
         ]
       }
@@ -133,7 +138,7 @@ export const PAGE_ROUTER = [
     routes: [
       {
         name: "公告列表",
-        path: "/announcement",
+        path: "/announcement/index",
       },
       {
         hideInMenu: true,
