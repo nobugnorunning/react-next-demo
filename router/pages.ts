@@ -126,5 +126,20 @@ export const PAGE_ROUTER = [
         path: "/performanceResultConfirmAndApply/employeePerformanceCalculations",
       }
     ]
+  },
+  {
+    name: "公告详情",
+    path: "/announcement",
+    routes: [
+      {
+        name: "公告列表",
+        path: "/announcement",
+      },
+      {
+        hideInMenu: true,
+        name: "公告详情",
+        path: "/announcement/detail"
+      }
+    ]
   }
 ]
