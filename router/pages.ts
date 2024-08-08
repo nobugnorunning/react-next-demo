@@ -142,6 +142,36 @@ export const PAGE_ROUTER = [
     ]
   },
   {
+    name: "绩效结果确认及应用",
+    path: "/performanceResultConfirmAndApply",
+    routes: [
+      {
+        name: "绩效结果确认",
+        path: "/performanceResultConfirmAndApply/performanceResultConfirm",
+        routes: [
+          {
+            hideInMenu: true,
+            name: "部门绩效结果申诉表",
+            path: "/performanceResultConfirmAndApply/performanceResultConfirm/complaintEdit"
+          },
+          {
+            hideInMenu: true,
+            name: "部门绩效结果申诉表详情",
+            path: "/performanceResultConfirmAndApply/performanceResultConfirm/complaintDetail"
+          }
+        ]
+      },
+      {
+        name: "专项嘉奖管理",
+        path: "/performanceResultConfirmAndApply/specialAwards",
+      },
+      {
+        name: "员工绩效计算",
+        path: "/performanceResultConfirmAndApply/employeePerformanceCalculations",
+      }
+    ]
+  },
+  {
     name: "配置中心",
     path: "/configurationCenter",
     routes: [
@@ -208,32 +238,48 @@ export const PAGE_ROUTER = [
     ]
   },
   {
-    name: "绩效结果确认及应用",
-    path: "/performanceResultConfirmAndApply",
+    name: "绩效统计报表",
+    path: "/performanceStatisticalReports",
     routes: [
       {
-        name: "绩效结果确认",
-        path: "/performanceResultConfirmAndApply/performanceResultConfirm",
-        routes: [
-          {
-            hideInMenu: true,
-            name: "部门绩效结果申诉表",
-            path: "/performanceResultConfirmAndApply/performanceResultConfirm/complaintEdit"
-          },
-          {
-            hideInMenu: true,
-            name: "部门绩效结果申诉表详情",
-            path: "/performanceResultConfirmAndApply/performanceResultConfirm/complaintDetail"
-          }
-        ]
+        name: "部门绩效结果汇总表",
+        path: "/performanceStatisticalReports/departmentRet",
       },
       {
-        name: "专项嘉奖管理",
-        path: "/performanceResultConfirmAndApply/specialAwards",
+        name: "员工月度绩效结果汇总表",
+        path: "/performanceStatisticalReports/employeeMonthRet",
       },
       {
-        name: "员工绩效计算",
-        path: "/performanceResultConfirmAndApply/employeePerformanceCalculations",
+        name: "员工年度绩效结果汇总表",
+        path: "/performanceStatisticalReports/employeeYearRet",
+      },
+      {
+        name: "总监绩效结果汇总表",
+        path: "/performanceStatisticalReports/majordomoRet",
+      },
+      {
+        name: "部门互评绩效结果汇总表",
+        path: "/performanceStatisticalReports/departmentMutuallyRet",
+      },
+      {
+        name: "岗位绩效考评预报差距统计表",
+        path: "/performanceStatisticalReports/jobEvaluationForecasting",
+      },
+      {
+        name: "部门绩效考评结果申诉备案表",
+        path: "/performanceStatisticalReports/departmentEvaluationComplaint",
+      },
+      {
+        name: "员工绩效考评结果申诉备案表",
+        path: "/performanceStatisticalReports/employeeEvaluationComplaint",
+      },
+      {
+        name: "优秀员工评选结果表",
+        path: "/performanceStatisticalReports/outstandingEmployeeRet",
+      },
+      {
+        name: "员工基础信息统计表",
+        path: "/performanceStatisticalReports/employeeInfo",
       }
     ]
   },
