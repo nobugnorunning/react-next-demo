@@ -44,11 +44,11 @@ const Index = () => {
       title: "单据编号",
       dataIndex: "field1"
     },
-    {
-      align: "center",
-      title: "考核名称",
-      dataIndex: "field2"
-    },
+    // {
+    //   align: "center",
+    //   title: "考核名称",
+    //   dataIndex: "field2"
+    // },
     {
       align: "center",
       title: "考核类型",
@@ -96,10 +96,10 @@ const Index = () => {
         return (
           <>
             <Button type={'link'} onClick={() => {
-              router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseDetail?id=${record.field1}&type=detail`)
+              router.push(`/performanceAppraise/employeeAppraise/employeeAppraiseDetail?id=${record.field1}&type=detail`)
             }}>详情</Button>
             <Button type={'link'} onClick={() => {
-              router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseEdit?id=${record.field1}`)
+              router.push(`/performanceAppraise/employeeAppraise/employeeAppraiseEdit?id=${record.field1}`)
             }}>编辑</Button>
             <Button type={'link'} danger onClick={() => {
                Modal.confirm({
@@ -128,7 +128,7 @@ const Index = () => {
   }
 
   const lunchAppraise = () => {
-    router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseCreate`)
+    router.push(`/performanceAppraise/employeeAppraise/employeeAppraiseCreate`)
   }
 
   return (
@@ -140,20 +140,20 @@ const Index = () => {
           label={'单据编号'}
           name="field1"
         >
-          <Input placeholder="请输入单据编号" />
+          <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item
-          label={'考核名称'}
+          label={'考核人员'}
           name="field2"
         >
-          <Input placeholder="请输入考核名称" />
+          <Input placeholder="请输入" />
         </Form.Item>
       </ProForm>
 
       <Divider className={'my-[20px]'}></Divider>
 
       <Row className={'mb-[20px]'}>
-        <Button type={'primary'} icon={<PlusOutlined />} onClick={lunchAppraise}>发起评价</Button>
+        <Button type={'primary'} icon={<PlusOutlined />} onClick={lunchAppraise}>发起自评</Button>
       </Row>
 
       <Table

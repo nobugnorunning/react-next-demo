@@ -1,5 +1,5 @@
 import { getLayoutProps } from "@/common/layout/getProps";
-import { PlusOutlined } from "@ant-design/icons";
+import { DownloadOutlined, PlusOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import type { Key} from "react";
 import { useState } from "react";
@@ -20,6 +20,7 @@ type TableDataType = {
   field8: string;
   field9: string;
   field10: string;
+  field11: string;
 }
 
 type TableRowSelection<T> = TableProps<T>["rowSelection"];
@@ -46,48 +47,48 @@ const Index = () => {
     },
     {
       align: "center",
-      title: "考核名称",
-      dataIndex: "field2"
-    },
-    {
-      align: "center",
-      title: "考核类型",
-      dataIndex: "field3"
-    },
-    {
-      align: "center",
       title: "所属部门",
       dataIndex: "field4"
     },
     {
       align: "center",
-      title: "期间",
-      dataIndex: "field5"
-    },
-    {
-      align: "center",
-      title: "创建人",
-      dataIndex: "field6"
-    },
-    {
-      align: "center",
-      title: "创建时间",
+      title: "申请日期",
       dataIndex: "field7"
     },
     {
       align: "center",
-      title: "更新人",
-      dataIndex: "field8"
+      title: "发起人",
+      dataIndex: "field6"
     },
     {
       align: "center",
-      title: "更新时间",
-      dataIndex: "field9"
+      title: "工作质量评分",
+      dataIndex: "field11"
     },
     {
       align: "center",
-      title: "状态",
-      dataIndex: "field10"
+      title: "履职创新评分",
+      dataIndex: "field11"
+    },
+    {
+      align: "center",
+      title: "团队协作评分",
+      dataIndex: "field11"
+    },
+    {
+      align: "center",
+      title: "工作态度评分",
+      dataIndex: "field11"
+    },
+    {
+      align: "center",
+      title: "工作满意度评分",
+      dataIndex: "field11"
+    },
+    {
+      align: "center",
+      title: "多维评测总分",
+      dataIndex: "field11"
     },
     {
       align: "center",
@@ -96,10 +97,10 @@ const Index = () => {
         return (
           <>
             <Button type={'link'} onClick={() => {
-              router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseDetail?id=${record.field1}&type=detail`)
+              router.push(`/performanceAppraise/employeeMultiAppraise/employeeMultiAppraiseDetail?id=${record.field1}&type=detail`)
             }}>详情</Button>
             <Button type={'link'} onClick={() => {
-              router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseEdit?id=${record.field1}`)
+              router.push(`/performanceAppraise/employeeMultiAppraise/employeeMultiAppraiseEdit?id=${record.field1}`)
             }}>编辑</Button>
             <Button type={'link'} danger onClick={() => {
                Modal.confirm({
@@ -128,7 +129,7 @@ const Index = () => {
   }
 
   const lunchAppraise = () => {
-    router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseCreate`)
+    router.push(`/performanceAppraise/employeeMultiAppraise/employeeMultiAppraiseCreate`)
   }
 
   return (
@@ -140,20 +141,21 @@ const Index = () => {
           label={'单据编号'}
           name="field1"
         >
-          <Input placeholder="请输入单据编号" />
+          <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item
-          label={'考核名称'}
+          label={'考核类型'}
           name="field2"
         >
-          <Input placeholder="请输入考核名称" />
+          <Input placeholder="请输入" />
         </Form.Item>
       </ProForm>
 
       <Divider className={'my-[20px]'}></Divider>
 
-      <Row className={'mb-[20px]'}>
+      <Row className={'mb-[20px]'} justify={'space-between'}>
         <Button type={'primary'} icon={<PlusOutlined />} onClick={lunchAppraise}>发起评价</Button>
+        <Button icon={<DownloadOutlined />}>下载</Button>
       </Row>
 
       <Table

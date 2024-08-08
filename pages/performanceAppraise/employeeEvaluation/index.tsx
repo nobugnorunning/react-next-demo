@@ -44,11 +44,11 @@ const Index = () => {
       title: "单据编号",
       dataIndex: "field1"
     },
-    {
-      align: "center",
-      title: "考核名称",
-      dataIndex: "field2"
-    },
+    // {
+    //   align: "center",
+    //   title: "考核名称",
+    //   dataIndex: "field2"
+    // },
     {
       align: "center",
       title: "考核类型",
@@ -96,10 +96,10 @@ const Index = () => {
         return (
           <>
             <Button type={'link'} onClick={() => {
-              router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseDetail?id=${record.field1}&type=detail`)
+              router.push(`/performanceAppraise/employeeEvaluation/employeeEvaluationDetail?id=${record.field1}&type=detail`)
             }}>详情</Button>
             <Button type={'link'} onClick={() => {
-              router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseEdit?id=${record.field1}`)
+              router.push(`/performanceAppraise/employeeEvaluation/employeeEvaluationEdit?id=${record.field1}`)
             }}>编辑</Button>
             <Button type={'link'} danger onClick={() => {
                Modal.confirm({
@@ -128,7 +128,7 @@ const Index = () => {
   }
 
   const lunchAppraise = () => {
-    router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseCreate`)
+    router.push(`/performanceAppraise/employeeEvaluation/employeeEvaluationCreate`)
   }
 
   return (
@@ -137,23 +137,41 @@ const Index = () => {
         console.log('123123123123');
       }}>
         <Form.Item
-          label={'单据编号'}
+          label={'员工名称'}
           name="field1"
         >
-          <Input placeholder="请输入单据编号" />
+          <Input placeholder="请输入" />
+        </Form.Item>
+        <Form.Item
+          label={'所属部门'}
+          name="field2"
+        >
+          <Input placeholder="请输入" />
+        </Form.Item>
+        <Form.Item
+          label={'岗位'}
+          name="field3"
+        >
+          <Input placeholder="请输入" />
+        </Form.Item>
+        <Form.Item
+          label={'部门总监'}
+          name="field4"
+        >
+          <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item
           label={'考核名称'}
-          name="field2"
+          name="field5"
         >
-          <Input placeholder="请输入考核名称" />
+          <Input placeholder="请输入" />
         </Form.Item>
       </ProForm>
 
       <Divider className={'my-[20px]'}></Divider>
 
       <Row className={'mb-[20px]'}>
-        <Button type={'primary'} icon={<PlusOutlined />} onClick={lunchAppraise}>发起评价</Button>
+        <Button type={'primary'} icon={<PlusOutlined />} onClick={lunchAppraise}>发起统评</Button>
       </Row>
 
       <Table

@@ -18,7 +18,6 @@ import { useRouter } from "next/router";
 import { type FC, type HTMLAttributes, type Key, type PropsWithChildren, useEffect, useState } from "react";
 import GlobalClasses from "@/styles/globalClasses.module.scss";
 import styles from "./index.module.scss";
-import { useRouter as useNavigationRouter } from "next/navigation";
 
 type TableRowSelection<T> = TableProps<T>["rowSelection"];
 
@@ -76,7 +75,6 @@ const EditableCell: FC<PropsWithChildren<EditableCellProps>> = ({
 };
 
 export const DepartmentAppraiseCU = () => {
-  const nRouter = useNavigationRouter();
   const router = useRouter();
   const { query } = router;
   const { id, type } = query;
@@ -200,15 +198,9 @@ export const DepartmentAppraiseCU = () => {
     },
     {
       align: "center",
-      title: "互评打分",
+      title: "指标得分",
       width: 200,
       dataIndex: "field8"
-    },
-    {
-      align: "center",
-      title: "互评打分说明",
-      width: 200,
-      dataIndex: "field9"
     }
   ].map(col => {
     return {
@@ -296,7 +288,7 @@ export const DepartmentAppraiseCU = () => {
         title: false
       }}>
         <div className={[styles.formCard, 'mb-[20px]'].join(' ')}>
-          <div className={[GlobalClasses.title, 'title'].join(" ")}>{(isEdit && !isDetail) ? "编辑" : isAdd ? "新增" : ""}部门绩效评价考核{ isDetail ? "详情" : "" }</div>
+          <div className={[GlobalClasses.title, 'title'].join(" ")}>{(isEdit && !isDetail) ? "编辑" : isAdd ? "新增" : ""}员工绩效自评考核{ isDetail ? "详情" : "" }</div>
 
           <Form form={form} layout={"vertical"}>
             <Row>
@@ -319,6 +311,12 @@ export const DepartmentAppraiseCU = () => {
                 >
                   <Input></Input>
                 </Form.Item>
+                <Form.Item
+                  label={"考核类型"}
+                  name="field1"
+                >
+                  <Input></Input>
+                </Form.Item>
               </Col>
               <Col span={6} offset={2}>
                 <Form.Item
@@ -334,7 +332,13 @@ export const DepartmentAppraiseCU = () => {
                   <DatePicker/>
                 </Form.Item>
                 <Form.Item
-                  label={"考核部门"}
+                  label={"自评人"}
+                  name="field1"
+                >
+                  <Input></Input>
+                </Form.Item>
+                <Form.Item
+                  label={"总分"}
                   name="field1"
                 >
                   <Input></Input>
@@ -351,7 +355,13 @@ export const DepartmentAppraiseCU = () => {
                   label={"评价结束日期"}
                   name="field7"
                 >
-                  <DatePicker/>
+                  <DatePicker />
+                </Form.Item>
+                <Form.Item
+                  label={"所属部门"}
+                  name="field7"
+                >
+                  <Input />
                 </Form.Item>
                 <Form.Item
                   label={"附件"}
@@ -416,29 +426,11 @@ export const DepartmentAppraiseCU = () => {
           </div>
 
           <Table
-            className={'mb-[20px]'}
             rowKey={'field1'}
             dataSource={applicationData}
             columns={applicationColumns}
             rowSelection={rowSelection}
           ></Table>
-
-          {
-            !(isAdd || isEdit) ?
-              <Row justify={'end'}>
-                <Button onClick={() => {
-                  nRouter.back();
-                }}>返回</Button>
-              </Row>
-              :
-              <Row justify={'end'}>
-                <Space>
-                  <Button>取消</Button>
-                  <Button>保存</Button>
-                  <Button type={'primary'}>提交</Button>
-                </Space>
-              </Row>
-          }
 
           <Modal
             open={open}

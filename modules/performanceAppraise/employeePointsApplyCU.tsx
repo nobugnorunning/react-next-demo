@@ -4,7 +4,7 @@ import { PageContainer } from "@ant-design/pro-layout";
 import {
   Button,
   Col,
-  DatePicker,
+  DatePicker, Descriptions, Divider,
   Form,
   Input,
   InputNumber, message, Modal,
@@ -18,7 +18,6 @@ import { useRouter } from "next/router";
 import { type FC, type HTMLAttributes, type Key, type PropsWithChildren, useEffect, useState } from "react";
 import GlobalClasses from "@/styles/globalClasses.module.scss";
 import styles from "./index.module.scss";
-import { useRouter as useNavigationRouter } from "next/navigation";
 
 type TableRowSelection<T> = TableProps<T>["rowSelection"];
 
@@ -75,8 +74,7 @@ const EditableCell: FC<PropsWithChildren<EditableCellProps>> = ({
   );
 };
 
-export const DepartmentAppraiseCU = () => {
-  const nRouter = useNavigationRouter();
+export const MajordomoAppraiseCU = () => {
   const router = useRouter();
   const { query } = router;
   const { id, type } = query;
@@ -130,8 +128,12 @@ export const DepartmentAppraiseCU = () => {
       return {
         field1: `项目名称${i + 1}`,
         field2: '项目内容',
-        field3: "35%",
-        field4: "12asd",
+        field3: "1.完成建设内内蒙分公司上线上收\n" +
+          "作。2跟踪完善宝信系统功能。3.\n" +
+          "组织开展个人绩效评价。",
+        field4: "对新成立的建设公司内蒙分公\n" +
+          "司采购应付业务静态模板收\n" +
+          "集，组织顾问进行系统配置",
         field5: "3",
         field6: "说明说明说明说明",
       }
@@ -245,13 +247,15 @@ export const DepartmentAppraiseCU = () => {
     },
     {
       align: "center",
-      title: "完成情况",
-      dataIndex: "field3"
+      title: "表彰情况",
+      dataIndex: "field3",
+      width: 400
     },
     {
       align: "center",
-      title: "表彰情况",
-      dataIndex: "field4"
+      title: "完成情况",
+      dataIndex: "field4",
+      width: 400
     },
     {
       align: "center",
@@ -295,108 +299,36 @@ export const DepartmentAppraiseCU = () => {
       <PageContainer header={{
         title: false
       }}>
-        <div className={[styles.formCard, 'mb-[20px]'].join(' ')}>
-          <div className={[GlobalClasses.title, 'title'].join(" ")}>{(isEdit && !isDetail) ? "编辑" : isAdd ? "新增" : ""}部门绩效评价考核{ isDetail ? "详情" : "" }</div>
+        <div className={[styles.formCard, "mb-[20px]"].join(" ")}>
+          <div
+            className={[GlobalClasses.title, "title"].join(" ")}>{(isEdit && !isDetail) ? "编辑" : isAdd ? "新增" : ""}员工加减分申请{isDetail ? "详情" : ""}</div>
 
-          <Form form={form} layout={"vertical"}>
-            <Row>
-              <Col span={6}>
-                <Form.Item
-                  label={"单据编号"}
-                  name="field1"
-                >
-                  <Input placeholder={"请输入单据编号"}></Input>
-                </Form.Item>
-                <Form.Item
-                  label={"考核期间"}
-                  name="field7"
-                >
-                  <DatePicker/>
-                </Form.Item>
-                <Form.Item
-                  label={"部门总监"}
-                  name="field1"
-                >
-                  <Input></Input>
-                </Form.Item>
-              </Col>
-              <Col span={6} offset={2}>
-                <Form.Item
-                  label={"考核名称"}
-                  name="field1"
-                >
-                  <Input placeholder={"请输入考核名称"}></Input>
-                </Form.Item>
-                <Form.Item
-                  label={"评价开始日期"}
-                  name="field7"
-                >
-                  <DatePicker/>
-                </Form.Item>
-                <Form.Item
-                  label={"考核部门"}
-                  name="field1"
-                >
-                  <Input></Input>
-                </Form.Item>
-              </Col>
-              <Col span={6} offset={2}>
-                <Form.Item
-                  label={"考核频次"}
-                  name="field1"
-                >
-                  <Input placeholder={"请输入考核频次"}></Input>
-                </Form.Item>
-                <Form.Item
-                  label={"评价结束日期"}
-                  name="field7"
-                >
-                  <DatePicker/>
-                </Form.Item>
-                <Form.Item
-                  label={"附件"}
-                  name="field1"
-                >
-                  <Button type={"link"} icon={<PlusOutlined/>}>附件上传</Button>
-                </Form.Item>
-              </Col>
-            </Row>
-          </Form>
+          <Descriptions column={4} items={[
+            {
+              label: "申请单号",
+              children: "BMPJ2404120011"
+            },
+            {
+              label: "申请人",
+              children: "赵三"
+            },
+            {
+              label: "所属部门",
+              children: "李四"
+            }
+          ]}/>
 
-          {
-            !(isAdd || isEdit) ?
-              null :
-              (
-                <Row justify={"end"} className={"mb-[20px]"}>
-                  <Button type={"link"} icon={<DownloadOutlined/>}>下载模板</Button>
-                  <Button type={"link"} icon={<DownloadOutlined/>}>导入</Button>
-                </Row>
-              )
-          }
+          <Divider className={'mb-[20px] mt-0'} />
 
-          <Table
-            components={{
-              body: {
-                cell: EditableCell
-              }
-            }}
-            dataSource={editTableData}
-            columns={editTableColumns.concat(editColumns)}
-            rowKey={"field1"}
-            pagination={false}
-          ></Table>
-        </div>
-
-        <div className={styles.formCard}>
           <div className="header">
-            <div className={[GlobalClasses.title, "title"].join(" ")}>加减分申请</div>
+            <div className={[GlobalClasses.subTitle, 'title'].join(" ")}>--申请明细列表--</div>
             {
               !(isAdd || isEdit) ?
                 null :
                 (
                   <Row justify={"end"} className={"mb-[20px]"}>
-                    <Button type={"link"} icon={<DownloadOutlined/>}>下载模板</Button>
-                    <Button type={"link"} icon={<DownloadOutlined/>}>导入</Button>
+                    {/*<Button type={"link"} icon={<DownloadOutlined/>}>下载模板</Button>*/}
+                    {/*<Button type={"link"} icon={<DownloadOutlined/>}>导入</Button>*/}
                     <Space>
                       <Button type={'primary'} icon={<PlusOutlined />} onClick={() => {
                         setCurrentEdit({});
@@ -416,7 +348,6 @@ export const DepartmentAppraiseCU = () => {
           </div>
 
           <Table
-            className={'mb-[20px]'}
             rowKey={'field1'}
             dataSource={applicationData}
             columns={applicationColumns}
@@ -425,12 +356,7 @@ export const DepartmentAppraiseCU = () => {
 
           {
             !(isAdd || isEdit) ?
-              <Row justify={'end'}>
-                <Button onClick={() => {
-                  nRouter.back();
-                }}>返回</Button>
-              </Row>
-              :
+              null :
               <Row justify={'end'}>
                 <Space>
                   <Button>取消</Button>
@@ -500,11 +426,195 @@ export const DepartmentAppraiseCU = () => {
               </Form.Item>
             </Form>
           </Modal>
+          {/*<Form form={form} layout={"vertical"}>*/}
+          {/*  <Row>*/}
+          {/*    <Col span={6}>*/}
+          {/*      <Form.Item*/}
+          {/*        label={"单据编号"}*/}
+          {/*        name="field1"*/}
+          {/*      >*/}
+          {/*        <Input placeholder={"请输入单据编号"}></Input>*/}
+          {/*      </Form.Item>*/}
+          {/*      <Form.Item*/}
+          {/*        label={"考核期间"}*/}
+          {/*        name="field7"*/}
+          {/*      >*/}
+          {/*        <DatePicker/>*/}
+          {/*      </Form.Item>*/}
+          {/*      <Form.Item*/}
+          {/*        label={"部门总监"}*/}
+          {/*        name="field1"*/}
+          {/*      >*/}
+          {/*        <Input></Input>*/}
+          {/*      </Form.Item>*/}
+          {/*    </Col>*/}
+          {/*    <Col span={6} offset={2}>*/}
+          {/*      <Form.Item*/}
+          {/*        label={"考核名称"}*/}
+          {/*        name="field1"*/}
+          {/*      >*/}
+          {/*        <Input placeholder={"请输入考核名称"}></Input>*/}
+          {/*      </Form.Item>*/}
+          {/*      <Form.Item*/}
+          {/*        label={"评价开始日期"}*/}
+          {/*        name="field7"*/}
+          {/*      >*/}
+          {/*        <DatePicker/>*/}
+          {/*      </Form.Item>*/}
+          {/*      <Form.Item*/}
+          {/*        label={"考核部门"}*/}
+          {/*        name="field1"*/}
+          {/*      >*/}
+          {/*        <Input></Input>*/}
+          {/*      </Form.Item>*/}
+          {/*    </Col>*/}
+          {/*    <Col span={6} offset={2}>*/}
+          {/*      <Form.Item*/}
+          {/*        label={"考核频次"}*/}
+          {/*        name="field1"*/}
+          {/*      >*/}
+          {/*        <Input placeholder={"请输入考核频次"}></Input>*/}
+          {/*      </Form.Item>*/}
+          {/*      <Form.Item*/}
+          {/*        label={"评价结束日期"}*/}
+          {/*        name="field7"*/}
+          {/*      >*/}
+          {/*        <DatePicker/>*/}
+          {/*      </Form.Item>*/}
+          {/*      <Form.Item*/}
+          {/*        label={"附件"}*/}
+          {/*        name="field1"*/}
+          {/*      >*/}
+          {/*        <Button type={"link"} icon={<PlusOutlined/>}>附件上传</Button>*/}
+          {/*      </Form.Item>*/}
+          {/*    </Col>*/}
+          {/*  </Row>*/}
+          {/*</Form>*/}
+
+          {/*{*/}
+          {/*  !(isAdd || isEdit) ?*/}
+          {/*    null :*/}
+          {/*    (*/}
+          {/*      <Row justify={"end"} className={"mb-[20px]"}>*/}
+          {/*        <Button type={"link"} icon={<DownloadOutlined/>}>下载模板</Button>*/}
+          {/*        <Button type={"link"} icon={<DownloadOutlined/>}>导入</Button>*/}
+          {/*      </Row>*/}
+          {/*    )*/}
+          {/*}*/}
+
+          {/*<Table*/}
+          {/*  components={{*/}
+          {/*    body: {*/}
+          {/*      cell: EditableCell*/}
+          {/*    }*/}
+          {/*  }}*/}
+          {/*  dataSource={editTableData}*/}
+          {/*  columns={editTableColumns.concat(editColumns)}*/}
+          {/*  rowKey={"field1"}*/}
+          {/*  pagination={false}*/}
+          {/*></Table>*/}
         </div>
+
+        {/*<div className={styles.formCard}>*/}
+        {/*  <div className="header">*/}
+        {/*    <div className={[GlobalClasses.title, "title"].join(" ")}>绩效明细列表</div>*/}
+        {/*    {*/}
+        {/*      !(isAdd || isEdit) ?*/}
+        {/*        null :*/}
+        {/*        (*/}
+        {/*          <Row justify={"end"} className={"mb-[20px]"}>*/}
+        {/*            /!*<Button type={"link"} icon={<DownloadOutlined/>}>下载模板</Button>*!/*/}
+        {/*            /!*<Button type={"link"} icon={<DownloadOutlined/>}>导入</Button>*!/*/}
+        {/*            <Space>*/}
+        {/*              <Button type={'primary'} icon={<PlusOutlined />} onClick={() => {*/}
+        {/*                setCurrentEdit({});*/}
+        {/*                editForm.resetFields();*/}
+        {/*                setOpen(true);*/}
+        {/*              }}>新增</Button>*/}
+        {/*              <Button disabled={selectedRowKeys.length !== 1} type={'primary'} icon={<EditOutlined />} onClick={() => {*/}
+        {/*                setCurrentEdit(applicationData.find(item => (item.field1 === selectedRowKeys[0]))!)*/}
+        {/*                editForm.resetFields();*/}
+        {/*                setOpen(true);*/}
+        {/*              }}>编辑</Button>*/}
+        {/*              <Button type={'primary'} icon={<DeleteOutlined />}>删除</Button>*/}
+        {/*            </Space>*/}
+        {/*          </Row>*/}
+        {/*        )*/}
+        {/*    }*/}
+        {/*  </div>*/}
+
+        {/*  <Table*/}
+        {/*    rowKey={'field1'}*/}
+        {/*    dataSource={applicationData}*/}
+        {/*    columns={applicationColumns}*/}
+        {/*    rowSelection={rowSelection}*/}
+        {/*  ></Table>*/}
+
+        {/*  <Modal*/}
+        {/*    open={open}*/}
+        {/*    title={`${JSON.stringify(currentEdit) === "{}" ? "新增" : "编辑"}考核计算公式配置`}*/}
+        {/*    afterClose={() => editForm.resetFields()}*/}
+        {/*    onOk={handleOk}*/}
+        {/*    onCancel={handleCancel}*/}
+        {/*    okText={'提交'}*/}
+        {/*    cancelText={'取消'}*/}
+        {/*    footer={(_, { OkBtn, CancelBtn }) => (*/}
+        {/*      <>*/}
+        {/*        <CancelBtn />*/}
+        {/*        <OkBtn />*/}
+        {/*      </>*/}
+        {/*    )}*/}
+        {/*  >*/}
+        {/*    <Form form={editForm} initialValues={currentEdit} labelCol={{span: 4}}>*/}
+        {/*      <Form.Item*/}
+        {/*        label={'项目名称'}*/}
+        {/*        name={'field1'}*/}
+        {/*      >*/}
+        {/*        <Select*/}
+        {/*          options={[*/}
+        {/*            { value: 'option1', label: 'option1' },*/}
+        {/*            { value: 'option2', label: 'option2' },*/}
+        {/*            { value: 'option3', label: 'option3' },*/}
+        {/*          ]}*/}
+        {/*        ></Select>*/}
+        {/*      </Form.Item>*/}
+        {/*      <Form.Item*/}
+        {/*        label={'项目内容'}*/}
+        {/*        name={'field2'}*/}
+        {/*      >*/}
+        {/*        <Input placeholder={"请输入"}></Input>*/}
+        {/*      </Form.Item>*/}
+        {/*      <Form.Item*/}
+        {/*        label={'完成情况'}*/}
+        {/*        name={'field3'}*/}
+        {/*      >*/}
+        {/*        <Input placeholder={"请输入"}></Input>*/}
+        {/*      </Form.Item>*/}
+        {/*      <Form.Item*/}
+        {/*        label={'表彰情况'}*/}
+        {/*        name={'field4'}*/}
+        {/*      >*/}
+        {/*        <Input placeholder={"请输入"}></Input>*/}
+        {/*      </Form.Item>*/}
+        {/*      <Form.Item*/}
+        {/*        label={'申请分数'}*/}
+        {/*        name={'field5'}*/}
+        {/*      >*/}
+        {/*        <Input placeholder={"请输入"}></Input>*/}
+        {/*      </Form.Item>*/}
+        {/*      <Form.Item*/}
+        {/*        label={'申请说明'}*/}
+        {/*        name={'field6'}*/}
+        {/*      >*/}
+        {/*        <Input placeholder={"请输入"}></Input>*/}
+        {/*      </Form.Item>*/}
+        {/*    </Form>*/}
+        {/*  </Modal>*/}
+        {/*</div>*/}
       </PageContainer>
     </>
   )
 }
 
 export const getServerSideProps = getLayoutProps;
-export default DepartmentAppraiseCU;
+export default MajordomoAppraiseCU;

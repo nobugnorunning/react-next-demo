@@ -1,14 +1,14 @@
 export const PAGE_ROUTER = [
-  {
-    name: "通知管理",
-    path: "/system",
-    routes: [
-      {
-        name: "通知详情",
-        path: "/system/notification",
-      }
-    ]
-  },
+  // {
+  //   name: "通知管理",
+  //   path: "/system",
+  //   routes: [
+  //     {
+  //       name: "通知详情",
+  //       path: "/system/notification",
+  //     }
+  //   ]
+  // },
   {
     name: "绩效评价",
     path: "/performanceAppraise",
@@ -29,8 +29,113 @@ export const PAGE_ROUTER = [
           },
           {
             hideInMenu: true,
-            name: "部门绩效评价编辑",
+            name: "部门绩效评价详情",
             path: "/performanceAppraise/departmentAppraise/departmentAppraiseDetail",
+          }
+        ]
+      },
+      {
+        name: "员工绩效自评",
+        path: "/performanceAppraise/employeeAppraise",
+        routes: [
+          {
+            hideInMenu: true,
+            name: "员工绩效自评新增",
+            path: "/performanceAppraise/employeeAppraise/employeeAppraiseCreate",
+          },
+          {
+            hideInMenu: true,
+            name: "员工绩效自评编辑",
+            path: "/performanceAppraise/employeeAppraise/employeeAppraiseEdit",
+          },
+          {
+            hideInMenu: true,
+            name: "员工绩效自评详情",
+            path: "/performanceAppraise/employeeAppraise/employeeAppraiseDetail",
+          }
+        ]
+      },
+      {
+        name: "员工绩效统评",
+        path: "/performanceAppraise/employeeEvaluation",
+        routes: [
+          {
+            hideInMenu: true,
+            name: "员工绩效统评新增",
+            path: "/performanceAppraise/employeeEvaluation/employeeEvaluationCreate",
+          },
+          {
+            hideInMenu: true,
+            name: "员工绩效统评编辑",
+            path: "/performanceAppraise/employeeEvaluation/employeeEvaluationEdit",
+          },
+          {
+            hideInMenu: true,
+            name: "员工绩效统评详情",
+            path: "/performanceAppraise/employeeEvaluation/employeeEvaluationDetail",
+          }
+        ]
+      },
+      {
+        name: "总监绩效评价",
+        path: "/performanceAppraise/majordomoAppraise",
+        routes: [
+          {
+            hideInMenu: true,
+            name: "总监绩效评价新增",
+            path: "/performanceAppraise/majordomoAppraise/majordomoAppraiseCreate",
+          },
+          {
+            hideInMenu: true,
+            name: "总监绩效评价编辑",
+            path: "/performanceAppraise/majordomoAppraise/majordomoAppraiseEdit",
+          },
+          {
+            hideInMenu: true,
+            name: "总监绩效评价详情",
+            path: "/performanceAppraise/majordomoAppraise/majordomoAppraiseDetail",
+          }
+        ]
+      },
+      {
+        name: "员工加减分申请",
+        path: "/performanceAppraise/employeePointsApply",
+        routes: [
+          {
+            hideInMenu: true,
+            name: "员工加减分申请新增",
+            path: "/performanceAppraise/employeePointsApply/employeePointsApplyCreate",
+          },
+          {
+            hideInMenu: true,
+            name: "员工加减分申请编辑",
+            path: "/performanceAppraise/employeePointsApply/employeePointsApplyEdit",
+          },
+          {
+            hideInMenu: true,
+            name: "员工加减分申请详情",
+            path: "/performanceAppraise/employeePointsApply/employeePointsApplyDetail",
+          }
+        ]
+      },
+      {
+        name: "员工绩效多维测评",
+        path: "/performanceAppraise/employeeMultiAppraise",
+        routes: [
+          {
+            hideInMenu: true,
+            name: "员工绩效多维测评新增",
+            path: "/performanceAppraise/employeeMultiAppraise/employeeMultiAppraiseCreate",
+          },
+          {
+            hideInMenu: true,
+            name: "员工绩效多维测评编辑",
+            path: "/performanceAppraise/employeeMultiAppraise/employeeMultiAppraiseEdit",
+          },
+          {
+            hideInMenu: true,
+            name: "员工绩效多维测评详情",
+            path: "/performanceAppraise/employeeMultiAppraise/employeeMultiAppraiseDetail",
           }
         ]
       }

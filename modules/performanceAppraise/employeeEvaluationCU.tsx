@@ -1,6 +1,11 @@
 import { getLayoutProps } from "@/common/layout/getProps";
 import { DeleteOutlined, DownloadOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { PageContainer } from "@ant-design/pro-layout";
+import type { TabsProps
+} from "antd";
+import {
+  Tabs
+} from "antd";
 import {
   Button,
   Col,
@@ -18,7 +23,6 @@ import { useRouter } from "next/router";
 import { type FC, type HTMLAttributes, type Key, type PropsWithChildren, useEffect, useState } from "react";
 import GlobalClasses from "@/styles/globalClasses.module.scss";
 import styles from "./index.module.scss";
-import { useRouter as useNavigationRouter } from "next/navigation";
 
 type TableRowSelection<T> = TableProps<T>["rowSelection"];
 
@@ -76,7 +80,6 @@ const EditableCell: FC<PropsWithChildren<EditableCellProps>> = ({
 };
 
 export const DepartmentAppraiseCU = () => {
-  const nRouter = useNavigationRouter();
   const router = useRouter();
   const { query } = router;
   const { id, type } = query;
@@ -188,27 +191,21 @@ export const DepartmentAppraiseCU = () => {
   const editColumns = [
     {
       align: "center",
-      title: "自评得分",
+      title: "评价得分",
       width: 200,
       dataIndex: "field6"
     },
     {
       align: "center",
-      title: "自评得分说明",
+      title: "评价得分说明",
       width: 200,
       dataIndex: "field7"
     },
     {
       align: "center",
-      title: "互评打分",
+      title: "指标得分",
       width: 200,
       dataIndex: "field8"
-    },
-    {
-      align: "center",
-      title: "互评打分说明",
-      width: 200,
-      dataIndex: "field9"
     }
   ].map(col => {
     return {
@@ -222,6 +219,43 @@ export const DepartmentAppraiseCU = () => {
       }
     }
   }) as TableColumnsType
+
+  const EditTable = () => {
+    return (
+      <>
+        <Table
+          components={{
+            body: {
+              cell: EditableCell
+            }
+          }}
+          dataSource={editTableData}
+          columns={editTableColumns.concat(editColumns)}
+          rowKey={"field1"}
+          pagination={false}
+        ></Table>
+      </>
+    )
+  }
+
+  const items: TabsProps['items'] = [
+    {
+      key: '1',
+      label: 'Mr.wang',
+      children: <EditTable />,
+    },
+    {
+      key: '2',
+      label: 'Mr.zhang',
+      children: <EditTable />,
+    },
+    {
+      key: '3',
+      label: 'Mr.lao',
+      children: <EditTable />,
+    },
+  ];
+
 
   const applicationColumns: TableColumnsType = [
     {
@@ -296,7 +330,7 @@ export const DepartmentAppraiseCU = () => {
         title: false
       }}>
         <div className={[styles.formCard, 'mb-[20px]'].join(' ')}>
-          <div className={[GlobalClasses.title, 'title'].join(" ")}>{(isEdit && !isDetail) ? "编辑" : isAdd ? "新增" : ""}部门绩效评价考核{ isDetail ? "详情" : "" }</div>
+          <div className={[GlobalClasses.title, 'title'].join(" ")}>{(isEdit && !isDetail) ? "编辑" : isAdd ? "新增" : ""}员工绩效统评考核{ isDetail ? "详情" : "" }</div>
 
           <Form form={form} layout={"vertical"}>
             <Row>
@@ -319,6 +353,12 @@ export const DepartmentAppraiseCU = () => {
                 >
                   <Input></Input>
                 </Form.Item>
+                <Form.Item
+                  label={"总分"}
+                  name="field1"
+                >
+                  <Input></Input>
+                </Form.Item>
               </Col>
               <Col span={6} offset={2}>
                 <Form.Item
@@ -334,7 +374,7 @@ export const DepartmentAppraiseCU = () => {
                   <DatePicker/>
                 </Form.Item>
                 <Form.Item
-                  label={"考核部门"}
+                  label={"所属部门"}
                   name="field1"
                 >
                   <Input></Input>
@@ -351,40 +391,28 @@ export const DepartmentAppraiseCU = () => {
                   label={"评价结束日期"}
                   name="field7"
                 >
-                  <DatePicker/>
+                  <DatePicker />
                 </Form.Item>
                 <Form.Item
-                  label={"附件"}
-                  name="field1"
+                  label={"考核类型"}
+                  name="field7"
                 >
-                  <Button type={"link"} icon={<PlusOutlined/>}>附件上传</Button>
+                  <Input />
                 </Form.Item>
               </Col>
             </Row>
           </Form>
 
-          {
+          <Tabs defaultActiveKey="1" items={items} tabBarExtraContent={
             !(isAdd || isEdit) ?
-              null :
-              (
+            null :
+            (
                 <Row justify={"end"} className={"mb-[20px]"}>
-                  <Button type={"link"} icon={<DownloadOutlined/>}>下载模板</Button>
-                  <Button type={"link"} icon={<DownloadOutlined/>}>导入</Button>
-                </Row>
+                <Button type={"link"} icon={<DownloadOutlined/>}>下载模板</Button>
+                <Button type={"link"} icon={<DownloadOutlined/>}>导入</Button>
+              </Row>
               )
-          }
-
-          <Table
-            components={{
-              body: {
-                cell: EditableCell
-              }
-            }}
-            dataSource={editTableData}
-            columns={editTableColumns.concat(editColumns)}
-            rowKey={"field1"}
-            pagination={false}
-          ></Table>
+          } />
         </div>
 
         <div className={styles.formCard}>
@@ -416,29 +444,11 @@ export const DepartmentAppraiseCU = () => {
           </div>
 
           <Table
-            className={'mb-[20px]'}
             rowKey={'field1'}
             dataSource={applicationData}
             columns={applicationColumns}
             rowSelection={rowSelection}
           ></Table>
-
-          {
-            !(isAdd || isEdit) ?
-              <Row justify={'end'}>
-                <Button onClick={() => {
-                  nRouter.back();
-                }}>返回</Button>
-              </Row>
-              :
-              <Row justify={'end'}>
-                <Space>
-                  <Button>取消</Button>
-                  <Button>保存</Button>
-                  <Button type={'primary'}>提交</Button>
-                </Space>
-              </Row>
-          }
 
           <Modal
             open={open}

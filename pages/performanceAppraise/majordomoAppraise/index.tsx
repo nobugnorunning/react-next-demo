@@ -1,5 +1,5 @@
 import { getLayoutProps } from "@/common/layout/getProps";
-import { PlusOutlined } from "@ant-design/icons";
+import { DownloadOutlined, PlusOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import type { Key} from "react";
 import { useState } from "react";
@@ -44,11 +44,11 @@ const Index = () => {
       title: "单据编号",
       dataIndex: "field1"
     },
-    {
-      align: "center",
-      title: "考核名称",
-      dataIndex: "field2"
-    },
+    // {
+    //   align: "center",
+    //   title: "考核名称",
+    //   dataIndex: "field2"
+    // },
     {
       align: "center",
       title: "考核类型",
@@ -56,7 +56,7 @@ const Index = () => {
     },
     {
       align: "center",
-      title: "所属部门",
+      title: "部门",
       dataIndex: "field4"
     },
     {
@@ -64,29 +64,34 @@ const Index = () => {
       title: "期间",
       dataIndex: "field5"
     },
+    // {
+    //   align: "center",
+    //   title: "创建人",
+    //   dataIndex: "field6"
+    // },
     {
       align: "center",
-      title: "创建人",
-      dataIndex: "field6"
-    },
-    {
-      align: "center",
-      title: "创建时间",
+      title: "开始时间",
       dataIndex: "field7"
     },
+    // {
+    //   align: "center",
+    //   title: "更新人",
+    //   dataIndex: "field8"
+    // },
     {
       align: "center",
-      title: "更新人",
-      dataIndex: "field8"
-    },
-    {
-      align: "center",
-      title: "更新时间",
+      title: "结束时间",
       dataIndex: "field9"
     },
     {
       align: "center",
-      title: "状态",
+      title: "申报人",
+      dataIndex: "field8"
+    },
+    {
+      align: "center",
+      title: "考核状态",
       dataIndex: "field10"
     },
     {
@@ -96,10 +101,10 @@ const Index = () => {
         return (
           <>
             <Button type={'link'} onClick={() => {
-              router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseDetail?id=${record.field1}&type=detail`)
+              router.push(`/performanceAppraise/majordomoAppraise/majordomoAppraiseDetail?id=${record.field1}&type=detail`)
             }}>详情</Button>
             <Button type={'link'} onClick={() => {
-              router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseEdit?id=${record.field1}`)
+              router.push(`/performanceAppraise/majordomoAppraise/majordomoAppraiseEdit?id=${record.field1}`)
             }}>编辑</Button>
             <Button type={'link'} danger onClick={() => {
                Modal.confirm({
@@ -128,7 +133,7 @@ const Index = () => {
   }
 
   const lunchAppraise = () => {
-    router.push(`/performanceAppraise/departmentAppraise/departmentAppraiseCreate`)
+    router.push(`/performanceAppraise/majordomoAppraise/majordomoAppraiseCreate`)
   }
 
   return (
@@ -140,20 +145,21 @@ const Index = () => {
           label={'单据编号'}
           name="field1"
         >
-          <Input placeholder="请输入单据编号" />
+          <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item
-          label={'考核名称'}
+          label={'考核类型'}
           name="field2"
         >
-          <Input placeholder="请输入考核名称" />
+          <Input placeholder="请输入" />
         </Form.Item>
       </ProForm>
 
       <Divider className={'my-[20px]'}></Divider>
 
-      <Row className={'mb-[20px]'}>
+      <Row className={'mb-[20px]'} justify={'space-between'}>
         <Button type={'primary'} icon={<PlusOutlined />} onClick={lunchAppraise}>发起评价</Button>
+        <Button icon={<DownloadOutlined />}>下载</Button>
       </Row>
 
       <Table
